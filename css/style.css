@@ -1,0 +1,26 @@
+.header-logo{
+    display: flex;
+    justify-content: center;
+}
+
+.imgRemeras{
+    padding: 4%;
+}
+
+.cardRemeras{
+    margin-right: 3%;
+}
+
+.imgLogo{
+    width: 100px;
+}
+
+.menuStyle{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.buscadorMain{
+    display: flex;
+    justify-content: center;
+}
