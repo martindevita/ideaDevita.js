@@ -24,3 +24,13 @@
     display: flex;
     justify-content: center;
 }
+
+.navbarHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.botonPrincipal{
+    display: flex;
+    align-items: center;
+}
