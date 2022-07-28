@@ -2,16 +2,17 @@ const remeras = [
     {id:1, modelo:"La Creación", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
     {id:2, modelo:"La Última Cena", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
     {id:3, modelo:"La Noche Estrellada", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
-    {id:4, modelo:"La Joven de la Perla", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"}
+    {id:4, modelo:"La Joven de la Perla", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
+    {id:4, modelo:"El Nacimiento de Venus", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/nacVenus.png"},
 ]
 
 let carrito = []
 
 const divRemeras = document.getElementById("remeras")
 
-remeras.forEach(remerasArray => {
+remeras.forEach ((remerasArray) => {
     divRemeras.innerHTML += `
-        <div class="card cardRemeras" style="width: 18rem;">
+        <div class="card cardRemeras my-3" style="width: 18rem;">
             <div>
                 <img src="${remerasArray.img}" class="card-img-top imgRemeras" alt="...">
             </div>
@@ -19,18 +20,21 @@ remeras.forEach(remerasArray => {
                 <h5 class="card-title">${remerasArray.modelo}</h5>
                 <p class="card-text"><span>$${remerasArray.precio}</span></p>
                 <a href="#" class="btn btn-success">COMPRAR</a>
-                <button id="${remerasArray.id}" type="button" class="btn btn-secondary my-3">Agregar Carrito</button>
+                <button id="${remerasArray.id}"type="button" class="btn btn-primary my-3">Agregar Carrito</button>
             </div>
         </div> 
     `
 })
+    const botonCarrito = document.getElementById("${remerasArray.id}")
 
-let botonCarrito = addEventListener ("click", añadirCarrito)
+    botonCarrito = addEventListener ("click", añadirCarrito)
 
-function añadirCarrito (remera) {
-    carrito.push(document.getElementById("${remerasArray.id}"))
-    console.log(carrito)
-}
+    function añadirCarrito (remId) {
+        carrito.push(remId)
+        console.log(carrito)
+    }
+
+
 
 // let carrito = []
 
