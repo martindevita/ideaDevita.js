@@ -3,7 +3,7 @@ const remeras = [
     {id:2, modelo:"La Última Cena", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
     {id:3, modelo:"La Noche Estrellada", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
     {id:4, modelo:"La Joven de la Perla", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
-    {id:4, modelo:"El Nacimiento de Venus", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/nacVenus.png"},
+    {id:5, modelo:"El Nacimiento de Venus", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/nacVenus.png"},
 ]
 
 let carrito = []
@@ -25,16 +25,46 @@ remeras.forEach ((remerasArray) => {
         </div> 
     `
 })
-    const botonCarrito = document.getElementById("${remerasArray.id}")
 
-    botonCarrito = addEventListener ("click", añadirCarrito)
+const botonCarrito = document.getElementById("${remerasArray.id}")
 
-    function añadirCarrito (remId) {
-        carrito.push(remId)
-        console.log(carrito)
+botonCarrito = addEventListener ("click", añadirCarrito)
+
+function añadirCarrito (remId) {
+    carrito.push(remId)
+    console.log(carrito)
+}
+
+
+class Compradores {
+    constructor(nombre, descripción, email){
+        this.nombre = nombre
+        this.descripción = descripción
+        this.email = email
     }
+}
 
+let compradores = []
 
+if(localStorage.getItem('compradores')){
+    compradores = JSON.parse (localStorage.getItem("compradores"))
+}else {
+    localStorage.setItem("compradores", JSON.stringify(compradores))
+}
+
+const formCompradores = document.getElementById("formCompradores")
+
+formCompradores.addEventListener("submit", (c) => {
+    c.preventDefault()
+    console.log(c.target)
+    let datForm = new FormData(c.target)
+
+    let comprador = new Compradores (datForm.get("nombre") , datForm.get("descripción"), datForm.get("email"))
+    compradores.push(comprador)
+    console.log(compradores)
+    localStorage.setItem("compradores", JSON.stringify(compradores))
+    formCompradores.reset()
+})
 
 // let carrito = []
 
