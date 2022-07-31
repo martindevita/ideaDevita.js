@@ -53,22 +53,27 @@
                     </div>
                 </div>
                 <div>
-                    <button id="botonCarrito" class="btn btn-ligth"><i class="fa-solid fa-bag-shopping"></i></button>
+                    <button class="btn btn-ligth">
+                        <i class="fa-solid fa-bag-shopping">
+                            <!-- <div class="column my-1" id="contCarrito"></div> -->
+                        </i>
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container">
+    <main class="container">  
         <h1 id="tituloPrincipal" class="text-center my-3">Dedag</h1>
-    </div>
 
-    <div class="container">
-        <div id="remeras" class="row"></div>
-    </div>
+        <div class="row" id="contenedorRemeras"></div>
 
-    <div class="container">
-        <form class="formMain">
+        <button class="btn btn-primary my-3" id="botonCarrito">Ver Carrito</button>
+        <div class="row py-3" id="contCarrito"></div>
+    </main>
+
+    <div class="container my-4">
+        <form class="formCompradores">
             <div class="mb-3">
                 <label class="form-label">Ingrese su Nombre o Apodo</label>
                 <input type="text" class="form-control">
