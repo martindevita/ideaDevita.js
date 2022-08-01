@@ -1,36 +1,69 @@
-.header-logo{
+*{
+    margin: 0%;
+    padding: 0%;
+    text-decoration: none;
+}
+
+body{
+    background-color: ghostwhite;
+}
+
+.header-logo {
     display: flex;
     justify-content: center;
 }
 
-.imgRemeras{
+.imgRemeras {
     padding: 4%;
 }
 
-.cardRemeras{
-    margin-left: 3%;
-}
-
-.imgLogo{
+.imgLogo {
     width: 100px;
 }
 
-.menuStyle{
+.menuStyle {
     display: flex;
     justify-content: flex-start;
 }
 
-.buscadorMain{
+.buscadorMain {
     display: flex;
     justify-content: center;
 }
 
-.navbarHeader{
+#navbarNav{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
-.botonPrincipal{
+.botonPrincipal {
     display: flex;
     align-items: center;
+}
+
+.navbar-contenedor {
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.navbar-contenedor ul {
+    margin: 0 auto;
+}
+
+.navbar-contenedor .navbar-toggler {
+    border: none;
+}
+
+.tamImagen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+.tamCard{
+    width: 80%;
 }

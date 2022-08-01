@@ -32,8 +32,8 @@ remeras.forEach(remera => {
     const divRemera = document.createElement('div');
     divRemera.classList.add('card', 'col-xl-3', 'col-md-6', 'col-sm-12', 'cardMio');
     divRemera.innerHTML = `
-        <div>
-            <img src="${remera.img}" class="card-img-top img-fluid tamImagen py-3" alt="...">
+        <div class="tamCard">
+            <img src="${remera.img}" class="card-img-top img-fluid py-3" alt="...">
             <div class="card-body">
             <h3 class="card-title">${remera.modelo}</h3>
             <p class="card-text">$${remera.precio}</p>
@@ -67,7 +67,7 @@ productosCarrito.addEventListener('click', () => {
     carrito.forEach(remera => {
         aux += `<div class="card col-xl-3 col-md-6 col-sm-12 cardMio">
                     <div>
-                        <img class="tamImagen py-3" src="img/${remera.id}.jpg" class="card-img-top img-fluid" alt="...">
+                        <img class="tamImagen py-3" src="${remera.img}" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
                         <h3 class="card-title">${remera.modelo}</h3>
                         <p class="card-text">${remera.precio}</p>
