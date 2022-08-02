@@ -33,22 +33,20 @@ remeras.forEach(remera => {
     divRemera.classList.add('card', 'col-xl-3', 'col-md-6', 'col-sm-12', 'cardMio');
     divRemera.innerHTML = `
         <div class="tamCard">
-            <div>
+            <div id="${remera.id}">
                 <img src="${remera.img}" class="card-img-top img-fluid py-3" alt="...">
                 <div class="card-body">
-                <h3 class="card-title">${remera.modelo}</h3>
-                <p class="card-text">$${remera.precio}</p>
-                <button id="boton${remera.id}" class="btn btn-primary">Agregar al Carrito</button>
+                    <h3 class="card-title">${remera.modelo}</h3>
+                    <p class="card-text">$${remera.precio}</p>
+                    <button class="btn btn-primary">Agregar al Carrito</button>
                 </div>
             </div>
         </div>`;
     contenedorRemeras.appendChild(divRemera);
 
-    const boton = document.getElementById(`boton${remera.id}`);
-    boton.addEventListener('click', () => {
+    const boton = document.getElementById(`${remera.id}`).lastElementChild.lastElementChild.addEventListener("click", () => {
         agregarAlCarrito(remera.id);
-    }
-    );
+    });
 }
 );
 
@@ -67,12 +65,17 @@ const productosCarrito = document.getElementById("botonCarrito");
 productosCarrito.addEventListener('click', () => {
     let aux = "";
     carrito.forEach(remera => {
-        aux += `<div class="card col-xl-3 col-md-6 col-sm-12 cardMio">
-                    <div>
-                        <img class="tamImagen py-3" src="${remera.img}" class="card-img-top img-fluid" alt="...">
-                        <div class="card-body">
-                        <h3 class="card-title">${remera.modelo}</h3>
-                        <p class="card-text">${remera.precio}</p>
+        aux += `<div class="card text-bg-light mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="${remera.img}" class="img-fluid rounded-start my-1" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">${remera.modelo}</h5>
+                                <p class="card-text"><span>$${remera.precio}</span></p>
+                                <p class="card-text"><small class="text-muted">Talle seleccionado: ${remera.talle}</small></p>
+                            </div>
                         </div>
                     </div>
                 </div>`;
@@ -81,6 +84,7 @@ productosCarrito.addEventListener('click', () => {
     contenedorCarrito.innerHTML = aux;
 }
 );
+
 
 // const remeras = [
 //     {id:1, modelo:"La Creación", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
