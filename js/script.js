@@ -33,11 +33,13 @@ remeras.forEach(remera => {
     divRemera.classList.add('card', 'col-xl-3', 'col-md-6', 'col-sm-12', 'cardMio');
     divRemera.innerHTML = `
         <div class="tamCard">
-            <img src="${remera.img}" class="card-img-top img-fluid py-3" alt="...">
-            <div class="card-body">
-            <h3 class="card-title">${remera.modelo}</h3>
-            <p class="card-text">$${remera.precio}</p>
-            <button id="boton${remera.id}" class="btn btn-primary">Agregar al Carrito</button>
+            <div>
+                <img src="${remera.img}" class="card-img-top img-fluid py-3" alt="...">
+                <div class="card-body">
+                <h3 class="card-title">${remera.modelo}</h3>
+                <p class="card-text">$${remera.precio}</p>
+                <button id="boton${remera.id}" class="btn btn-primary">Agregar al Carrito</button>
+                </div>
             </div>
         </div>`;
     contenedorRemeras.appendChild(divRemera);

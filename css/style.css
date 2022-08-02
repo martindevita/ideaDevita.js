@@ -17,7 +17,7 @@ body{
     padding: 4%;
 }
 
-.imgLogo {
+.imgLogo{
     width: 100px;
 }
 
@@ -65,5 +65,6 @@ body{
 }
 
 .tamCard{
-    width: 80%;
+    display: flex;
+    justify-content: space-between;
 }

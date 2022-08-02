@@ -13,14 +13,82 @@
 
 <body>
 
-    <header>
+    <nav class="navbar navbar-expand-lg bg-light container">
+        <div class="container-fluid">
+            <div>
+                <a class="navbar-brand" href="#">
+                    <img width="100px" src="./multimedia/Nefelibata_Brush_Canvas-removebg-preview.png" alt="">
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">INICIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            COLECCIONES
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Colección actual</a></li>
+                            <li><a class="dropdown-item" href="#">Colección pasada</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Proximamente</a></li>
+                        </ul>
+                    </li>
+                    <div>
+                        <button id="botonCarrito" class="btn btn-primary my-2" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-cart4" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <section class="contenedorCardCart ">
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+            aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body cardCart">
+                <div class="row py-3" id="contCarrito"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- <header>
         <nav class="navbar-contenedor">
             <div class="navbar navbar-expand-lg navbar-light container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/index.html">INICIO</a>
@@ -46,8 +114,8 @@
                         </div>
                     </ul>
                 </div>
-            </div>
-                <!-- <div class="div-cuenta">
+            </div> -->
+    <!-- <div class="div-cuenta">
                     <button class="boton-cuenta-carrito">
                         <a href="pages/micuenta.html" alt="Mi cuenta">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-person-circle"
@@ -59,8 +127,8 @@
                         </a>
                     </button>
                 </div> -->
-            <div class="div-carrito">
-                <button class="boton-cuenta-carrito" type="button" data-bs-toggle="offcanvas"
+    <!-- <div class="div-carrito">
+                <button class="boton-cuenta-carrito " type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-cart4"
                         viewBox="0 0 18 18">
@@ -86,16 +154,19 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <!-- MOCK UP PRODUCTO EN CARRITO-->
+                        MOCK UP PRODUCTO EN CARRITO
                         <div class="productoEnCarrito">
-                            <!-- <div class="tituloPrecioCantidadProductoEnCarrito">
+                            <div class="tituloPrecioCantidadProductoEnCarrito">
                                 <div class="precioCantidadProductoEnCarrito">
                                     <input type="number">
                                 </div>
                             </div>
                             <div class="eliminarProductoEnCarrito">
                                 <button>X</button>
-                            </div> -->
+                            </div>
+                            <div>
+                                <div class="row py-3" id="contCarrito"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="offcanvas-footer">
@@ -104,7 +175,7 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header> -->
     <!-- <header>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
@@ -170,28 +241,8 @@
         <h1 id="tituloPrincipal" class="text-center my-3">Dedag</h1>
 
         <div class="row" id="contenedorRemeras"></div>
-        <div class="row py-3" id="contCarrito"></div>
-        <button class="btn btn-primary my-3" id="botonCarrito">Ver Carrito</button>
-        
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4"
-                viewBox="0 0 16 16">
-                <path
-                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-            </svg>
-        </button>
-
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-            aria-labelledby="offcanvasWithBothOptionsLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <p>Hola soy fermin, no tengo pitulin</p>
-            </div>
-        </div>
+        <!-- <div class="row py-3" id="contCarrito"></div> -->
+        <button class="btn btn-primary my-3" >Ver Carrito</button>
     </main>
 
     <div class="container my-4">
