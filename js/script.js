@@ -1,4 +1,4 @@
-//1) Creo la clase Producto, con las propiedades id, nombre, precio y cantidad.
+//1) creo clase Remera con sus caracterisiticas
 
 class Remeras {
     constructor(id, modelo, talle, precio, stock, img) {
@@ -11,7 +11,7 @@ class Remeras {
     }
 }
 
-//2) Creo productos y los almaceno en un array.
+//2) creo diferentes remeras y las guardo en el array "remeras"
 
 const remera1 = new Remeras (1, 'La creación', "XL", 4000, 10, "./multimedia/ultimaCena.png");
 const remera2 = new Remeras (2, 'La Última cena', "L", 4000, 5, "./multimedia/ultimaCena.png");
@@ -24,7 +24,9 @@ const remera8 = new Remeras (8, 'El Nacimiento de Venus', "S", 4000, 6, "./multi
 
 const remeras = [remera1, remera2, remera3, remera4, remera5, remera6, remera7, remera8];
 
-//3) Muestro los productos modificando el DOM. 
+localStorage.setItem("remeras", JSON.stringify([remeras]))
+
+//3) muestro las remeras en el DOM
 
 const contenedorRemeras = document.getElementById("contenedorRemeras");
 
@@ -32,7 +34,7 @@ remeras.forEach(remera => {
     const divRemera = document.createElement('div');
     divRemera.classList.add('card', 'col-xl-3', 'col-md-6', 'col-sm-12', 'cardMio');
     divRemera.innerHTML = `
-        <div class="tamCard">
+        <div>
             <div id="${remera.id}">
                 <img src="${remera.img}" class="card-img-top img-fluid py-3" alt="...">
                 <div class="card-body">
@@ -42,30 +44,103 @@ remeras.forEach(remera => {
                 </div>
             </div>
         </div>`;
+
     contenedorRemeras.appendChild(divRemera);
 
-    const boton = document.getElementById(`${remera.id}`).lastElementChild.lastElementChild.addEventListener("click", () => {
+    document.getElementById(`${remera.id}`).lastElementChild.lastElementChild.addEventListener("click", () => {
         agregarAlCarrito(remera.id);
     });
 }
 );
 
+//creo un array vacío (carrito) para luego darle funacionalidad al boton de "añadir carrito"
 const carrito = [];
 
 const agregarAlCarrito = (id) => {
     const remera = remeras.find(remera => remera.id === id);
     carrito.push(remera);
+    Toastify({
+        text: "Producto agregado al carrito",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to bottom left, #30655A, #0229BA)",
+        },
+        onClick: function(){
+            console.log("Diste click")
+        } // Callback after click
+    }).showToast();
+
+    console.log(carrito)
+    localStorage.setItem("carrito", JSON.stringify(carrito))
 }
 
-// 5) Muestro el carrito de compras modificando el DOM.
+// funcion para eleminar producto del carrito
 
+// document.getElementById(`${remera.id}`).addEventListener("click", () => {
+//     eliminarRemCarrito(remera.id);
+// });
+
+// document.getElementById(`${remera.id}`)
+
+// const eliminarRemCarrito = (remId) => {
+//     const item = carrito.find((rem) => rem.id === remId)
+//     const indice = carrito.indexOf(item)
+//     carrito.splice(indice, 1)
+//     productosCarrito()
+// }
+
+
+// muestro el carrito en el DOM creando diferentes cards
 const contenedorCarrito = document.getElementById("contCarrito");
 const productosCarrito = document.getElementById("botonCarrito");
 
-productosCarrito.addEventListener('click', () => {
-    let aux = "";
-    carrito.forEach(remera => {
-        aux += `<div class="card text-bg-light mb-3" style="max-width: 540px;">
+// if(localStorage.getItem("carrito")){
+//     carrito = JSON.parse(localStorage.getItem("carrito"))
+
+//     productosCarrito.addEventListener('click', () => {
+//         carrito.forEach(remera => {
+//             contenedorCarrito.innerHTML +=
+
+//                 `<div class="card text-bg-light mb-3" style="max-width: 540px;">
+//                     <div class="row g-0">
+//                         <div class="col-md-4">
+//                             <img src="${remera.img}" class="img-fluid rounded-start my-1" alt="...">
+//                         </div>
+//                         <div class="col-md-8">
+//                             <div class="card-body">
+//                                 <h5 class="card-title">${remera.modelo}</h5>
+//                                 <p class="card-text"><span>$${remera.precio}</span></p>
+//                                 <div>
+//                                     <p class="card-text"><small class="text-muted">Talle seleccionado: ${remera.talle}</small></p>
+//                                     <button id="${remera.id}" class="btn btn-primary">
+//                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+//                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+//                                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+//                                         </svg>
+//                                     </button>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>`
+//         })
+
+//     })
+// }else{
+//     localStorage.setItem("carrito", JSON.stringify(carrito))
+// }
+
+    productosCarrito.addEventListener('click', () => {
+        contenedorCarrito.innerHTML = ""
+
+        let i = "";
+        carrito.forEach(remera => {
+            i+=        
+                `<div class="card text-bg-light mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="${remera.img}" class="img-fluid rounded-start my-1" alt="...">
@@ -74,181 +149,57 @@ productosCarrito.addEventListener('click', () => {
                             <div class="card-body">
                                 <h5 class="card-title">${remera.modelo}</h5>
                                 <p class="card-text"><span>$${remera.precio}</span></p>
-                                <p class="card-text"><small class="text-muted">Talle seleccionado: ${remera.talle}</small></p>
+                                <div>
+                                    <p class="card-text"><small class="text-muted">Talle seleccionado: ${remera.talle}</small></p>
+                                    <button id="${remera.id}" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>`;
-    }
-    );
-    contenedorCarrito.innerHTML = aux;
-}
-);
+        });
+
+        contenedorCarrito.innerHTML = i;
+
+    });
 
 
-// const remeras = [
-//     {id:1, modelo:"La Creación", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
-//     {id:2, modelo:"La Última Cena", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
-//     {id:3, modelo:"La Noche Estrellada", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
-//     {id:4, modelo:"La Joven de la Perla", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/laUltimaCena.png"},
-//     {id:5, modelo:"El Nacimiento de Venus", talle:"XL", precio: 4000, stock: 10, img:"./multimedia/nacVenus.png"},
-// ]
+// carrito.forEach(productoCarrito => {
+//     document.getElementById("botonEliminarProd").addEventListener("click", () => {
+//         eliminarProductoCart(productoCarrito.id)
+//     })
 
-// const contenedorRemeras = document.getElementById("remeras")
+//     const eliminarProductoCart = (id) => {
+//         const productoCarrito = productoCarrito.find (productoCarrito => productoCarrito.id === id);
+//         carrito.remove(productoCarrito)
+//     }
 
-// remeras.forEach (remera => {
-//     // const divRemera = document.createElement('div');
-//     // divRemera.classList.add('card', 'col-xl-3', 'col-md-6', 'col-sm-12', 'cardMio');
-//     contenedorRemeras.innerHTML += `
-        // <div class="card cardRemeras my-3" style="width: 18rem;">
-        //     <div>
-        //         <img src="${remera.img}" class="card-img-top imgRemeras" alt="...">
-        //     </div>
-        //     <div class="card-body">
-        //         <h5 class="card-title">${remera.modelo}</h5>
-        //         <p class="card-text"><span>$${remera.precio}</span></p>
-        //         <a href="#" class="btn btn-success">COMPRAR</a>
-        //         <button id="botonCarrito${remera.id}"type="button" class="btn btn-primary my-3">Agregar Carrito</button>
-        //     </div>
-        // </div>`
+//     carrito.splice(carrito.indexOf(productoCarrito), 1)
+// })
+
+// carrito.forEach(productoCarrito =>{
     
-//     contenedorRemeras.appendChild(divRemera);
 
-//     const botonCarrito = document.getElementById(`botonCarrito${remera.id}`);
+//     eliminarProductoCart.addEventListener(`click`, () => {
+//         document.getElementById(`productoCarrito${productoCarrito.id}`).remove()
 
-//     botonCarrito.addEventListener('click', () => {
-//         agregarAlCarrito(remera.id);
-//     }
-//     );
-// })
-
-// const carrito = []
-
-// const agregarAlCarrito = (id) => {
-//     const remera = remeras.find(remera => remera.id === id)
-//     carrito.push(remera)
-// }
-
-
-// class Compradores {
-//     constructor(nombre, descripción, email){
-//         this.nombre = nombre
-//         this.descripción = descripción
-//         this.email = email
-//     }
-// }
-
-// let compradores = []
-
-// if(localStorage.getItem('compradores')){
-//     compradores = JSON.parse (localStorage.getItem("compradores"))
-// }else {
-//     localStorage.setItem("compradores", JSON.stringify(compradores))
-// }
-
-// const formCompradores = document.getElementById("formCompradores")
-
-// formCompradores.addEventListener("submit", (c) => {
-//     c.preventDefault()
-//     console.log(c.target)
-//     let datForm = new FormData(c.target)
-
-//     let comprador = new Compradores (datForm.get("nombre") , datForm.get("descripción"), datForm.get("email"))
-//     compradores.push(comprador)
-//     console.log(compradores)
-//     localStorage.setItem("compradores", JSON.stringify(compradores))
-//     formCompradores.reset()
-// })
-
-
-// let carrito = []
-
-// class Remera {
-//     constructor(id, modelo, talle, stock, precio, img) {
-//         this.id = id
-//         this.modelo = modelo
-//         this.talle = talle
-//         this.stock = stock
-//         this.precio = precio
-//         this.img = img
-//     }
-// }
-
-// // function agregarCarrito (remerasArray) {
-// //     const item = remeras.find((rem) => rem.id === remerasArray)
-// //     carrito.push(item)
-// //     console.log(carrito)
-// // }
-
-// const remera1 = new Remera(1, "La creación", "XL", 10, 4000,)
-// const remera2 = new Remera(2, "La Última Cena", "L", 12, 4000)
-// const remera3 = new Remera(3, "La Noche Estrellada", "M", 8, 4000)
-// const remera4 = new Remera(4, "La Joven De La Perla", "XL", 15, 4000)
-
-// const remeras = [remera1, remera2, remera3, remera4]
-
-// const divRemeras = document.getElementById("remeras")
-
-// remeras.forEach(remerasArray => {
-//     divRemeras.innerHTML += `
-//         <div id="${remerasArray.id}" class="card cardRemeras" style="width: 18rem;">
-//             <div>
-//                 <img src="./multimedia/laUltimaCena.png" class="card-img-top imgRemeras" alt="...">
-//             </div>
-//             <div class="card-body">
-//                 <h5 class="card-title">${remerasArray.modelo}</h5>
-//                 <p class="card-text"><span>$${remerasArray.precio}</span></p>
-//                 <a href="#" class="btn btn-success">COMPRAR</a>
-//                 <button id="botonCarrito" type="button" class="btn btn-secondary my-3">Agregar Carrito</button>
-//             </div>
-//         </div> 
-//     `
-// }
-
-// let botonCarrito = document.getElementById("botonCarrito")
-
-// let remeraAñadida
-
-// let remeraCarrito 
-
-// remeras.forEach(remId => {
-//     botonCarrito.addEventListener("click", () => {
-//         carrito.push (remeraAñadida => {
-//             remId.id,
-//             remId.modelo,
-//             remId.precio,
-//             remId.img,
-//             cantidad = 0
-//         })
+//         carrito.splice(carrito.indexOf(productoCarrito), 1)
 //     })
 // })
 
 // console.log(carrito)
+// carrito.forEach((productosCarrito) => {
+//     const botonEliminarProductoCart = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).lastElementChild.lastElementChild
+    
+//     botonEliminarProductoCarrito.addEventListener("click", () => {
+//         document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).remove()
+        
+//         carrito.splice(carrito.indexOf(productoEnCarrito), 1)
 
-// let remerasCarrito
-
-// let remeraAñadida
-
-// remeras.forEach((remerasArray) => {
-//     let botonCarrito = document.getElementById(`botonCarrito`).lastElementChild.lastElementChild
-//     botonCarrito.addEventListener("click", () => {
-//         remeraAñadida = {
-//             id: remerasArray.id,
-//             modelo: remerasArray.modelo,
-//             precio: remerasArray.precio,
-//             imagen: remerasArray.img,
-//             cantindad: cantidad = 0
-//         }
 //     })
-
-//     if(carrito.some(remerasCarrito => remerasCarrito.id === remeraAñadida.id)){
-//         remerasCarrito = carrito.find(remerasCarrito => remerasCarrito.id === remeraAñadida.id)
-//         remerasCarrito.cantidad += 1
-//     }
 // })
-
-// const agregarCarrito = remerasArray (=> {
-//     const item = remeras.find((rem) => rem.id === remerasArray)
-//     carrito.push(item)
-//     console.log(carrito))
-// }

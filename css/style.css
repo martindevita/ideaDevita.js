@@ -18,7 +18,7 @@ body{
 }
 
 .imgLogo{
-    width: 100px;
+    width: 10%;
 }
 
 .menuStyle {
@@ -66,5 +66,11 @@ body{
 
 .tamCard{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+}
+
+.btnTrash{
+    display: flex;
+    align-items: flex-start;
+    justify-content: end;
 }
