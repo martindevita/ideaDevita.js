@@ -74,3 +74,17 @@ body{
     align-items: flex-start;
     justify-content: end;
 }
+
+.botonesCardCart{
+    display: flex;
+    justify-content: space-between;
+}
+
+.totalPagar{
+    margin-left: 10px;
+}
+
+.botonFinalizarCompra{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}

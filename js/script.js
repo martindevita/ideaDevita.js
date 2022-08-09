@@ -11,6 +11,7 @@ class Remeras {
     }
 }
 
+
 //2) creo diferentes remeras y las guardo en el array "remeras"
 
 const remera1 = new Remeras (1, 'La creación', "XL", 4000, 10, "./multimedia/ultimaCena.png");
@@ -25,6 +26,7 @@ const remera8 = new Remeras (8, 'El Nacimiento de Venus', "S", 4000, 6, "./multi
 const remeras = [remera1, remera2, remera3, remera4, remera5, remera6, remera7, remera8];
 
 localStorage.setItem("remeras", JSON.stringify([remeras]))
+
 
 //3) muestro las remeras en el DOM
 
@@ -50,15 +52,16 @@ remeras.forEach(remera => {
     document.getElementById(`${remera.id}`).lastElementChild.lastElementChild.addEventListener("click", () => {
         agregarAlCarrito(remera.id);
     });
-}
-);
+});
 
-//creo un array vacío (carrito) para luego darle funacionalidad al boton de "añadir carrito"
-const carrito = [];
+
+// 4) creo un array vacío (carrito) para luego darle funacionalidad al boton de "añadir carrito"
+
+let carrito = [];
 
 const agregarAlCarrito = (id) => {
-    const remera = remeras.find(remera => remera.id === id);
-    carrito.push(remera);
+    const item = remeras.find((remera) => remera.id === id);
+    carrito.push(item);
     Toastify({
         text: "Producto agregado al carrito",
         duration: 3000,
@@ -78,128 +81,68 @@ const agregarAlCarrito = (id) => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
 
-// funcion para eleminar producto del carrito
 
-// document.getElementById(`${remera.id}`).addEventListener("click", () => {
-//     eliminarRemCarrito(remera.id);
-// });
+// 5) muestro los productos añadidos al carrito y actualizo el mismo con una función
 
-// document.getElementById(`${remera.id}`)
+const contenedorCarrito = document.getElementById("contCarrito")
+const updateCarrito = document.getElementById("botonCarrito")
 
-// const eliminarRemCarrito = (remId) => {
-//     const item = carrito.find((rem) => rem.id === remId)
-//     const indice = carrito.indexOf(item)
-//     carrito.splice(indice, 1)
-//     productosCarrito()
-// }
+updateCarrito.addEventListener("click", actuCarrito)
 
+function actuCarrito(){
+    contenedorCarrito.innerHTML = ""
 
-// muestro el carrito en el DOM creando diferentes cards
-const contenedorCarrito = document.getElementById("contCarrito");
-const productosCarrito = document.getElementById("botonCarrito");
-
-// if(localStorage.getItem("carrito")){
-//     carrito = JSON.parse(localStorage.getItem("carrito"))
-
-//     productosCarrito.addEventListener('click', () => {
-//         carrito.forEach(remera => {
-//             contenedorCarrito.innerHTML +=
-
-//                 `<div class="card text-bg-light mb-3" style="max-width: 540px;">
-//                     <div class="row g-0">
-//                         <div class="col-md-4">
-//                             <img src="${remera.img}" class="img-fluid rounded-start my-1" alt="...">
-//                         </div>
-//                         <div class="col-md-8">
-//                             <div class="card-body">
-//                                 <h5 class="card-title">${remera.modelo}</h5>
-//                                 <p class="card-text"><span>$${remera.precio}</span></p>
-//                                 <div>
-//                                     <p class="card-text"><small class="text-muted">Talle seleccionado: ${remera.talle}</small></p>
-//                                     <button id="${remera.id}" class="btn btn-primary">
-//                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-//                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-//                                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-//                                         </svg>
-//                                     </button>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>`
-//         })
-
-//     })
-// }else{
-//     localStorage.setItem("carrito", JSON.stringify(carrito))
-// }
-
-    productosCarrito.addEventListener('click', () => {
-        contenedorCarrito.innerHTML = ""
-
-        let i = "";
-        carrito.forEach(remera => {
-            i+=        
-                `<div class="card text-bg-light mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="${remera.img}" class="img-fluid rounded-start my-1" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">${remera.modelo}</h5>
-                                <p class="card-text"><span>$${remera.precio}</span></p>
-                                <div>
-                                    <p class="card-text"><small class="text-muted">Talle seleccionado: ${remera.talle}</small></p>
-                                    <button id="${remera.id}" class="btn btn-primary">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                        </svg>
-                                    </button>
-                                </div>
+    let i = "";
+    carrito.forEach(remera => {
+        i+=        
+            `<div class="card text-bg-light mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="${remera.img}" class="img-fluid rounded-start my-1" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${remera.modelo}</h5>
+                            <p class="card-text"><span>$${remera.precio}</span></p>
+                            <div>
+                                <p class="card-text"><small class="text-muted">Talle seleccionado: ${remera.talle}</small></p>
+                                <button onClick = "eliminarProdCarrito(${remera.id})" class="btn btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
-                </div>`;
-        });
-
-        contenedorCarrito.innerHTML = i;
-
+                </div>
+            </div>`;
+        
+            contenedorCarrito.innerHTML = i;
     });
 
+    contadorCarrito.innerText = carrito.length
+    precioTotal.innerText = carrito.reduce((acu, prod) => acu + prod.precio, 0)
+}
 
-// carrito.forEach(productoCarrito => {
-//     document.getElementById("botonEliminarProd").addEventListener("click", () => {
-//         eliminarProductoCart(productoCarrito.id)
-//     })
 
-//     const eliminarProductoCart = (id) => {
-//         const productoCarrito = productoCarrito.find (productoCarrito => productoCarrito.id === id);
-//         carrito.remove(productoCarrito)
-//     }
+// 6) creo una funcion para eliminar productos del carrito
 
-//     carrito.splice(carrito.indexOf(productoCarrito), 1)
-// })
+const eliminarProdCarrito = (remId) => {
+    const item  = carrito.find((rem) => rem.id === remId)
+    const indice = carrito.indexOf(item)
+    carrito.splice(indice, 1);
+    actuCarrito()
 
-// carrito.forEach(productoCarrito =>{
-    
+    console.log(carrito)
+    localStorage.getItem(carrito)
+}
 
-//     eliminarProductoCart.addEventListener(`click`, () => {
-//         document.getElementById(`productoCarrito${productoCarrito.id}`).remove()
 
-//         carrito.splice(carrito.indexOf(productoCarrito), 1)
-//     })
-// })
+// 7) constante del contador del carrito
+const contadorCarrito = document.getElementById("contadorCarrito")
 
-// console.log(carrito)
-// carrito.forEach((productosCarrito) => {
-//     const botonEliminarProductoCart = document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).lastElementChild.lastElementChild
-    
-//     botonEliminarProductoCarrito.addEventListener("click", () => {
-//         document.getElementById(`productoEnCarrito${productoEnCarrito.id}`).remove()
-        
-//         carrito.splice(carrito.indexOf(productoEnCarrito), 1)
 
-//     })
-// })
+// 8) constante precio total carrito
+const precioTotal = document.getElementById("precioTotal")
+
