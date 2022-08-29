@@ -1,10 +1,10 @@
-*{
+* {
     margin: 0%;
     padding: 0%;
     text-decoration: none;
 }
 
-body{
+body {
     background-color: ghostwhite;
 }
 
@@ -17,7 +17,7 @@ body{
     padding: 4%;
 }
 
-.imgLogo{
+.imgLogo {
     width: 10%;
 }
 
@@ -31,7 +31,7 @@ body{
     justify-content: center;
 }
 
-#navbarNav{
+#navbarNav {
     display: flex;
     justify-content: flex-start;
 }
@@ -57,34 +57,52 @@ body{
     border: none;
 }
 
-.tamImagen{
+.tamImagen {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 60%;
 }
 
-.tamCard{
+.tamCard {
     display: flex;
     justify-content: space-evenly;
 }
 
-.btnTrash{
+.btnTrash {
     display: flex;
     align-items: flex-start;
     justify-content: end;
 }
 
-.botonesCardCart{
+.botonesCardCart {
     display: flex;
     justify-content: space-between;
 }
 
-.totalPagar{
+.totalPagar {
     margin-left: 10px;
 }
 
-.botonFinalizarCompra{
+.botonFinalizarCompra {
     margin-right: 10px;
-    margin-bottom: 10px;
+}
+
+.divBtnFinalizar {
+    display: flex;
+    justify-content: end;
+}
+
+.formCompra {
+    background-color: black;
+
+}
+
+.letraForm {
+    color: white;
+}
+
+footer {
+    margin-left: 50px;
+    margin-right: 50px;
 }

@@ -14,10 +14,11 @@
 
 <body>
 
+    <!-- HEADER -->
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <div>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="./index.html">
                     <img width="100px" src="./multimedia/Nefelibata_Brush_Canvas-removebg-preview.png" alt="">
                 </a>
             </div>
@@ -29,10 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">INICIO</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link active" aria-current="page" href="./index.html">INICIO</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -50,7 +48,8 @@
                     </li>
                     <div>
                         <button id="botonCarrito" class="btn btn-primary my-2" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><span id="contadorCarrito">0</span>
+                            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><span
+                                id="contadorCarrito">0</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-cart4" viewBox="0 0 16 16">
                                 <path
@@ -60,19 +59,27 @@
                     </div>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    <input id="inputBusqueda" class="form-control me-2" type="search" placeholder="Buscar"
+                        aria-label="Search">
+                    <button id="botonBuscar" class="btn btn-outline-success" type="submit"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg></button>
                 </form>
             </div>
         </div>
     </nav>
 
+
+    <!-- CONTENEDOR DEL CARRITO -->
     <section class="contenedorCardCart ">
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
             aria-labelledby="offcanvasWithBothOptionsLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
-                    <button type="button" class="btn btn-danger">Vaciar Carrito</button>
+                    <button id="vaciarCarrito" type="button" class="btn btn-danger">Vaciar Carrito</button>
                 </h5>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4"
                     viewBox="0 0 16 16">
@@ -86,43 +93,63 @@
             </div>
             <div class="botonesCardCart">
                 <p class="totalPagar">Total a pagar: $<span id="precioTotal">0</span></p>
-                <button type="button" class="btn btn-success botonFinalizarCompra">Finalizar Compra</button>
             </div>
         </div>
     </section>
 
+
+    <!-- CONTENEDOR DE PRODUCTOS -->
     <main class="container">
         <h1 id="tituloPrincipal" class="text-center my-3">
             <a href="./index.html">
                 <img width="10%" src="./multimedia/DEDAG (1).png" alt="">
             </a>
         </h1>
-
-        <div class="row" id="contenedorRemeras"></div>
+        <div class="row containerRems" id="contenedorRemeras"></div>
     </main>
 
-    <section>
-        <div class="container my-4">
-            <form class="formCompradores">
-                <div class="mb-3">
-                    <label class="form-label">Ingrese su Nombre o Apodo</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Contanos como fue tu experiencia comprando y que cositas podríamos
-                        mejorar</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleInputPassword1">
-                </div>
-                <button id="botonSubmit" type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </section>
 
-    <div class="container">
+    <!-- FORMULARIO DE COMPRA -->
+    <div class="container my-3 formCompra">
+        <div>
+            <h5 class="letraForm">Formulario para finalizar compra</h5>
+        </div>
+        <div class="row">
+            <div class="col my-1">
+                <label class="letraForm" for="">Ingrese su Nombre</label>
+                <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+            </div>
+            <div class="col my-1">
+                <label class="letraForm" for="">Ingrese su Apellido</label>
+                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label letraForm">Ingrese su Email</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <select class="form-select my-1" aria-label="Default select example">
+            <option selected>Seleccionar método de pago</option>
+            <option value="1">Tarjeta débito/crédito</option>
+            <option value="2">Mercado pago</option>
+            <option value="3">Transferencia bancaria</option>
+            <option value="3">Stablecoin</option>
+        </select>
+        <div class="input-group my-3">
+            <input type="text" class="form-control" aria-label="" placeholder="Total a pagar">
+            <span class="input-group-text">$</span>
+            <span id="precioTotal2" class="input-group-text">0</span>
+        </div>
+        <div class="divBtnFinalizar">
+            <button type="button" class="btn btn-success botonFinalizarCompra my-2" id="btnFinalizar">Finalizar
+                Compra</button>
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <div>
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <div class="col-md-4 d-flex align-items-center">
                 <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
@@ -165,6 +192,7 @@
         </footer>
     </div>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
