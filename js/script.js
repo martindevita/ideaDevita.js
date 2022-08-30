@@ -1,4 +1,4 @@
-//1) creo clase Remera con sus caracterisiticas
+//1) creo class Remera con sus caracterisiticas
 class Remeras {
     constructor(id, modelo, talle, precio, stock, cantidad, img) {
         this.id = id;
@@ -104,6 +104,8 @@ const updateCarrito = document.getElementById("botonCarrito")
 
 updateCarrito.addEventListener("click", actuCarrito)
 
+
+// 8) funcion actu carrito
 function actuCarrito() {
     contenedorCarrito.innerHTML = ""
 
@@ -146,7 +148,9 @@ function actuCarrito() {
 }
 
 
-// 8) creo una funcion para eliminar productos del carrito y vaciarlo
+// 9) funcion para eliminar productos del carrito y vaciarlo
+
+// btn eliminar
 const eliminarProdCarrito = (remId) => {
     const item = carrito.find((rem) => rem.id === remId)
     const indice = carrito.indexOf(item)
@@ -156,24 +160,24 @@ const eliminarProdCarrito = (remId) => {
     console.log(carrito)
     localStorage.getItem(carrito)
 }
-
+//btn vaciar
 const botonVaciar = document.getElementById("vaciarCarrito")
-
 botonVaciar.addEventListener("click", () => {
     carrito.length = 0
     actuCarrito()
 })
 
 
-// 9) constante del contador del carrito
+// 10) contador del carrito 
 const contadorCarrito = document.getElementById("contadorCarrito")
 
 
-// 10) constante precio total carrito
+// 11) precio total carrito
 const precioTotal = document.getElementById("precioTotal")
 const precioTotal2 = document.getElementById("precioTotal2")
 
 
+// 12) btn finalizar compra
 const botonFinalizarCompra = document.getElementById("btnFinalizar")
 
 botonFinalizarCompra.addEventListener("click", () => {
@@ -213,52 +217,28 @@ botonFinalizarCompra.addEventListener("click", () => {
     })
 })
 
-//filtrado de busqueda
 
-function buscadorInterno() {
-    filter = inputBusqueda.value.toLowerCase();
-    li = boxSearh.getElementById("inputBusqueda")
-}
+// 13) agrego fetch con api de dolar blue
+const divDolarHoy = document.getElementById("dolarHoy")
 
-// document.addEventListener("keyup", e => {
+fetch("https://criptoya.com/api/dolar")
+    .then(info => info.json())
+    .then(({ blue }) => {
+        divDolarHoy.classList.add("letraForm")
+        divDolarHoy.innerHTML = `
+            <h6>Cotización Dolar Blue Hoy: u$s ${blue}</h6>
+            `
+    })
 
-//     if (e.target.matches("inputBusqueda")) {
-//         document.querySelectorAll(".containerRems").forEach(rem => {
-//             rem.textContent.toLowerCase().includes(e.target.value.toLowerCase())
-//             inner
-//         })
-//     }
-
-//     console.log(e.target.value)
-// })
-// //11) filtro de busqueda
-
-// const botonBusqueda = document.getElementById("botonBusqueda")
-
-// botonBusqueda.addEventListener("click", (evento) => {
-//     evento.preventDefault()
-//     busquedaHtml(inputBusqueda.value)
-// })
-
-// function busquedaHtml(inputBusqueda) {
-//     resultSearch = remeras.filter((remera) => remera.modelo.includes(inputBusqueda.toLowerCase()))
-//     showSearch(resultSearch)
-// }
-
-// function showSearch(resultSearch) {
-//     divRemeras.innerHTML = ``
-//     for (let remera of resultSearch) {
-//         divRemeras.innerHTML += `
-//         <div>
-//             <div id="${remera.id}">
-//                 <img src="${remera.img}" class="card-img-top img-fluid py-3" alt="...">
-//                 <div class="card-body">
-//                     <h3 class="card-title">${remera.modelo}</h3>
-//                     <p class="card-text">$${remera.precio}</p>
-//                     <button class="btn btn-primary">Agregar al Carrito</button>
-//                 </div>
-//             </div>
-//         </div>`
-//     }
-// }
+setInterval(() => {
+    fetch("https://criptoya.com/api/dolar")
+        .then(info => info.json())
+        .then(({ blue }) => {
+            divDolarHoy.innerHTML = ""
+            divDolarHoy.classList.add("letraForm")
+            divDolarHoy.innerHTML = `
+            <h6>Cotización Dolar Blue Hoy: u$s ${blue}</h6>
+            `
+        })
+}, 30000)
 
